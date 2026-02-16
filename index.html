@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Detective Stories: Murder Mysteries</title>
-      <link rel="icon" type="image/png" href="https://github.com/TitanBusinessPros/Detective/raw/main/Detective-Favicon.png">
-<style>
+    <title>Detective Stories: Murder Mysteries</title>
+    <link rel="icon" type="image/png" href="https://github.com/TitanBusinessPros/Detective/raw/main/Detective-Favicon.png">
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -159,7 +159,7 @@
         }
 
         #dialogue-container {
-            background: Black
+            background: Black;
             padding: 15px;
             border-top: 2px solid #202020;
             min-height: 40%;
@@ -195,13 +195,11 @@
             text-align: left;
             transition: all 0.2s ease;
             font-size: 0.95rem;
-            font: white
         }
 
         .choice-btn:hover {
             background: #202020;
             border-color: #4a0c1c;
-            
         }
 
         /* Notepad Styles */
@@ -228,7 +226,7 @@
             padding: 12px;
             background: #FFFF99;
             border: none;
-            color: white;
+            font color: black;
             font-size: 0.9rem;
             line-height: 1.5;
             resize: none;
@@ -287,7 +285,8 @@
             background: #3a3a5a;
             border-color: #5a5a8a;
         }
-        /* UNIVERSAL background */
+
+      /* UNIVERSAL background */
         .bg-captain-office {
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
                 url('https://github.com/TitanBusinessPros/Detective/raw/main/Captain_Office.jpeg');
@@ -632,75 +631,119 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-        /* Music Controls */
-        #music-controls {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-            background: #202020;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #4f4f4f;
-            flex-direction: column;
-            align-items: center;
-            min-width: 150px;
-        }
         
-        .music-btn {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            background: #4f4f4f;
-            color: #e6e6e6;
-            border: 1px solid #4f4f4f;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 100%;
-        }
         
-        .music-btn:hover {
-            background: #ffffff;
-        }
         
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-        }
-        
-        .volume-slider {
-            flex: 1;
-            -webkit-appearance: none;
-            height: 5px;
-            background: #6f6f6f;
-            border-radius: 5px;
-            outline: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            background: #8e8e8e;
-            border-radius: 50%;
-            cursor: pointer;
-            accent-color: #8e8e8e;
-        }
-        
-        .volume-slider::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            background: #101010;
-            border-radius: 50%;
-            cursor: pointer;
-            border: none;
+        /* Media Queries for Mobile Optimization */
+        @media (min-width: 768px) {
+            #game-content {
+                flex-direction: row;
+            }
+
+            #notepad-container {
+                max-width: 300px;
+            }
         }
 
-        /* Media Queries for Mobile Optimization */
+        @media (max-width: 600px) {
+            #game-header {
+                padding: 8px 10px;
+            }
+
+            #game-logo {
+                width: 120px;
+                height: 25px;
+            }
+
+            .control-btn {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+
+            #dialogue-container {
+                padding: 10px;
+            }
+
+            .choice-btn {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        /* 1. Container for the music controls - FORCED FIXED POSITION (FINAL VERSION) */
+        #music-controls-container {
+            position: fixed !important; 
+            bottom: 10px !important; 
+            right: 10px !important;  
+            left: auto !important;    
+            z-index: 1000 !important;
+
+            background: #202020 !important;
+            padding: 5px !important;
+            border-radius: 8px !important;
+            border: 1px solid #4f4f4f !important;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
+
+            /* Set specific dimensions for absolute children */
+            height: 140px !important; 
+            width: 30px !important; 
+            display: block !important; 
+        }
+
+        /* 2. The vertical volume wrapper is now gone from HTML and CSS */
+
+        /* 3. Icon Styling (Now pinned relative to the main container) */
+        #music-controls-container span {
+            color: #e6e6e6 !important;
+            position: absolute; 
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        #music-controls-container span:first-of-type {
+            top: 5px; /* Pin the Loud Speaker icon to the top padding */
+        }
+
+        #music-controls-container span:last-of-type {
+            bottom: 5px; /* Pin the Mute Speaker icon to the bottom padding */
+        }
+
+
+        /* 4. The actual VERTICAL SLIDER STYLES (FORCED ROTATION - FINAL VERSION) */
+        .vertical-slider {
+            -webkit-appearance: none !important;
+            writing-mode: bt-lr !important;
+
+            width: 100px !important; /* Length of the track */
+            height: 6px !important;
+
+            transform: rotate(-90deg) !important; 
+            
+            position: absolute !important;
+            left: -35px !important; /* Centers the track horizontally */
+            top: 65px !important; /* Centers the track vertically */
+
+            background: #4f4f4f !important;
+            border-radius: 5px !important;
+            outline: none !important;
+            margin: 0 !important;
+            cursor: pointer !important;
+        }
+
+        /* Slider Thumb Styling */
+        .vertical-slider::-webkit-slider-thumb {
+            -webkit-appearance: none !important;
+            width: 18px !important;
+            height: 18px !important;
+            background: #a0aec0 !important;
+            border-radius: 50% !important;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5) !important;
+            transition: background 0.2s !important;
+        }
+
+        .vertical-slider::-webkit-slider-thumb:hover {
+            background: #cbd5e0 !important;
+        }
         @media (min-width: 768px) {
             #game-content {
                 flex-direction: row;
@@ -711,7 +754,7 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
             #game-header {
                 padding: 8px 10px;
             }
@@ -738,14 +781,13 @@
             #music-controls {
                 bottom: 5px;
                 right: 5px;
-                min-width: 130px;
-            }
-        }
+                min-width: 40px;
+            }   
+        }    
     </style>
 </head>
 <body>
     <div id="game-container">
-        <!-- Main Menu Screen -->
         <div id="main-menu" class="scene-container bg-detective-backdrop">
             <h1 class="menu-title">DETECTIVE STORIES</h1>
             <p class="menu-subtitle">Solve the unsolvable. Find the truth. Five challenging murder mysteries await your investigation.</p>
@@ -758,7 +800,6 @@
             </div>
         </div>
 
-        <!-- Game Screen -->
         <div id="game-screen">
             <div id="game-header">
                 <div id="game-logo"></div>
@@ -775,8 +816,7 @@
                         <div id="speaker-name">Detective</div>
                         <div id="dialogue-text">Welcome to the case. Let's begin our investigation.</div>
                         <div id="choices-container">
-                            <!-- Choice buttons will be dynamically inserted here -->
-                        </div>
+                            </div>
                     </div>
                 </div>
                 <div id="notepad-container" style="display: none;">
@@ -785,8 +825,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Ending Screen -->
         <div id="ending-screen">
             <h2 class="ending-title">Case Resolved</h2>
             <div class="ending-text" id="ending-text">
@@ -797,24 +835,21 @@
                 <button class="ending-btn" id="return-menu">Return to Menu</button>
             </div>
         </div>
-        
-        <!-- Music Controls -->
-        <div id="music-controls">
-            <div class="volume-control">
-                <span>🔊</span>
-                <input type="range" min="0" max="100" value="50" class="volume-slider" id="volume-slider">
-            </div>
-        </div>
     </div>
     
-    <!-- Background Music -->
+    <div id="music-controls-container">
+        <span class="text-xl">🔊</span> 
+        
+        <input type="range" min="0" max="100" value="50" class="vertical-slider" id="volume-slider">
+        
+        <span class="text-xl">🔇</span>
+    </div>
     <audio id="background-music" loop>
         <source src="https://github.com/TitanBusinessPros/Detective/raw/main/Detective%20Theme%20Song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <script>
-        // Game State
         const gameState = {
             currentCase: null,
             clues: {},
@@ -835,35 +870,119 @@
             notes: ""
         };
 
-        // Background Music
         const backgroundMusic = document.getElementById('background-music');
+        const volumeSlider = document.getElementById('volume-slider');
         let musicStarted = false;
-        let musicPlaying = true;
-        
-        // Function to start music on user interaction
+        let wasPlayingBeforeMute = false;
+
         function startMusicOnInteraction() {
             if (!musicStarted) {
-                backgroundMusic.volume = 0.5;
+                backgroundMusic.volume = volumeSlider.value / 100;
                 backgroundMusic.play().then(() => {
                     musicStarted = true;
-                    console.log("Background music started");
-                }).catch(error => {
-                    console.log("Music play failed, waiting for user interaction:", error);
+                    wasPlayingBeforeMute = true;
+                    document.body.removeEventListener('click', startMusicOnInteraction);
+                    document.body.removeEventListener('keydown', startMusicOnInteraction);
+                }).catch(error => { console.log("Music play failed:", error); });
+            }
+        }
+
+        // Add listeners to start music on first user interaction
+        document.body.addEventListener('click', startMusicOnInteraction);
+        document.body.addEventListener('keydown', startMusicOnInteraction);
+
+        volumeSlider.addEventListener('input', function() {
+            const newVolume = this.value / 100;
+            backgroundMusic.volume = newVolume;
+
+            if (!musicStarted) { startMusicOnInteraction(); return; }
+
+            if (this.value == 0) {
+                if (!backgroundMusic.paused) {
+                    wasPlayingBeforeMute = true;
+                    backgroundMusic.pause();
+                }
+            } else {
+                if (backgroundMusic.paused && wasPlayingBeforeMute) {
+                    backgroundMusic.play().catch(e => console.error("Resume play failed:", e));
+                }
+            }
+        });
+
+        // Set initial volume
+        backgroundMusic.volume = volumeSlider.value / 100;
+
+        // --- Game Logic Stubs (Must be added for full functionality) ---
+        function startGame(caseNumber) {
+            // Placeholder for game start logic
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('game-screen').style.display = 'flex';
+            gameState.currentCase = caseNumber;
+            // Add case-specific initialization logic here
+            console.log("Starting Case " + caseNumber);
+            // Example: set initial scene
+            // updateScene({speaker: 'Captain', text: 'Case ' + caseNumber + ' is active. Get to work!', choices: [...]}, 'bg-captain-office');
+        }
+
+        function updateScene(scene, backgroundClass) {
+            // Placeholder for updating dialogue and choices
+            document.getElementById('speaker-name').textContent = scene.speaker;
+            document.getElementById('dialogue-text').textContent = scene.text;
+            document.getElementById('background').className = backgroundClass || '';
+            
+            const choicesContainer = document.getElementById('choices-container');
+            choicesContainer.innerHTML = '';
+            
+            if (scene.choices) {
+                scene.choices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.classList.add('choice-btn');
+                    button.textContent = choice.text;
+                    button.onclick = () => choice.next();
+                    choicesContainer.appendChild(button);
                 });
             }
         }
-        
-        // Set up event listeners for user interaction
-        document.addEventListener('click', startMusicOnInteraction);
-        document.addEventListener('keydown', startMusicOnInteraction);
 
-        // Volume control
-        const volumeSlider = document.getElementById('volume-slider');
-        volumeSlider.addEventListener('input', function() {
-            backgroundMusic.volume = this.value / 100;
+        function toggleNotepad() {
+            const notepadContainer = document.getElementById('notepad-container');
+            const isVisible = notepadContainer.style.display === 'flex';
+            // Toggle visibility using flex/none
+            notepadContainer.style.display = isVisible ? 'none' : 'flex';
+        }
+
+        function showMainMenu() {
+            document.getElementById('game-screen').style.display = 'none';
+            document.getElementById('ending-screen').style.display = 'none';
+            document.getElementById('main-menu').style.display = 'flex';
+        }
+
+        // Case Buttons on Main Menu
+        document.querySelectorAll('.case-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const caseNum = e.target.getAttribute('data-case');
+                startGame(caseNum);
+            });
         });
         
-        // Sound Effects
+        // Control Buttons
+        document.getElementById('toggle-notepad').addEventListener('click', toggleNotepad);
+        document.getElementById('main-menu-btn').addEventListener('click', showMainMenu);
+        document.getElementById('return-menu').addEventListener('click', showMainMenu);
+        
+        // Placeholder for restart case functionality (can call startGame(gameState.currentCase) once implemented)
+        document.getElementById('restart-case-btn').addEventListener('click', () => {
+            alert("Restarting case " + gameState.currentCase + " (functionality needs implementation)");
+        });
+        document.getElementById('restart-case').addEventListener('click', () => {
+             alert("Restarting case " + gameState.currentCase + " (functionality needs implementation)");
+             // Example call if fully implemented: startGame(gameState.currentCase);
+        });
+
+        // Notepad saving mechanism (basic)
+        document.getElementById('notepad').addEventListener('input', (e) => {
+            gameState.notes = e.target.value;
+        });
         const sounds = {
             click: new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=='),
             sting: new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=='),
